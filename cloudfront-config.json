@@ -1,0 +1,91 @@
+{
+    "CallerReference": "prompttune-cloudfront-2025-06-28",
+    "Aliases": {
+        "Quantity": 2,
+        "Items": ["prompttune.io", "www.prompttune.io"]
+    },
+    "DefaultRootObject": "index.html",
+    "Origins": {
+        "Quantity": 2,
+        "Items": [
+            {
+                "Id": "S3Origin",
+                "DomainName": "prompt-tune-frontend-161693365686.s3-website-us-east-1.amazonaws.com",
+                "CustomOriginConfig": {
+                    "HTTPPort": 80,
+                    "HTTPSPort": 443,
+                    "OriginProtocolPolicy": "http-only"
+                }
+            },
+            {
+                "Id": "ApiOrigin", 
+                "DomainName": "v4hpbo4znc.execute-api.us-east-1.amazonaws.com",
+                "OriginPath": "/prod",
+                "CustomOriginConfig": {
+                    "HTTPPort": 80,
+                    "HTTPSPort": 443,
+                    "OriginProtocolPolicy": "https-only"
+                }
+            }
+        ]
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "S3Origin",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "MinTTL": 0,
+        "ForwardedValues": {
+            "QueryString": false,
+            "Cookies": {
+                "Forward": "none"
+            }
+        },
+        "TrustedSigners": {
+            "Enabled": false,
+            "Quantity": 0
+        }
+    },
+    "CacheBehaviors": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "PathPattern": "/api/*",
+                "TargetOriginId": "ApiOrigin",
+                "ViewerProtocolPolicy": "https-only",
+                "MinTTL": 0,
+                "ForwardedValues": {
+                    "QueryString": true,
+                    "Headers": {
+                        "Quantity": 3,
+                        "Items": ["Authorization", "Content-Type", "Origin"]
+                    },
+                    "Cookies": {
+                        "Forward": "none"
+                    }
+                },
+                "TrustedSigners": {
+                    "Enabled": false,
+                    "Quantity": 0
+                }
+            }
+        ]
+    },
+    "Comment": "CloudFront distribution for prompttune.io",
+    "Enabled": true,
+    "ViewerCertificate": {
+        "ACMCertificateArn": "arn:aws:acm:us-east-1:161693365686:certificate/35fbac3a-9106-4c5a-8171-a0b7e5e1126f",
+        "SSLSupportMethod": "sni-only",
+        "MinimumProtocolVersion": "TLSv1.2_2021"
+    },
+    "CustomErrorResponses": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "ErrorCode": 404,
+                "ResponsePagePath": "/index.html",
+                "ResponseCode": "200",
+                "ErrorCachingMinTTL": 300
+            }
+        ]
+    },
+    "PriceClass": "PriceClass_100"
+}
