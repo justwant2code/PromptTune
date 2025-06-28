@@ -1,0 +1,45 @@
+{
+  "name": "prompt-tune",
+  "version": "1.0.0",
+  "description": "Enterprise-grade AI prompt optimization platform with real-time analytics and team collaboration",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "test": "cd frontend && npm test",
+    "deploy": "python deploy-production.py",
+    "deploy-aws": "python deploy-aws.py",
+    "dev": "./start-dev.sh",
+    "lint": "cd frontend && npm run lint",
+    "format": "cd frontend && npm run format"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justwant2code/prompt-tune.git"
+  },
+  "keywords": [
+    "ai",
+    "prompt-optimization",
+    "machine-learning",
+    "analytics",
+    "collaboration",
+    "aws",
+    "serverless",
+    "react",
+    "typescript",
+    "python"
+  ],
+  "author": "justwant2code",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justwant2code/prompt-tune/issues"
+  },
+  "homepage": "https://github.com/justwant2code/prompt-tune#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
