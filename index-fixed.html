@@ -311,9 +311,9 @@
         let usingCloudFront = false;
         
         if (isProduction) {
-            // Try CloudFront first, fallback to direct API Gateway
-            API_BASE = 'https://prompttune.io/api';
-            usingCloudFront = true;
+            // Use direct API Gateway for now (CloudFront path mapping needs adjustment)
+            API_BASE = 'https://v4hpbo4znc.execute-api.us-east-1.amazonaws.com/prod';
+            usingCloudFront = false;
         }
         
         // Check API health and determine best endpoint
