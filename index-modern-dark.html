@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptTune - Professional AI Prompt Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern-dark-styles.css">
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="brand-section">
+                    <div class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 12h16v2H8v-2zm0 4h12v2H8v-2zm0 4h16v2H8v-2z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1 class="brand-title">PromptTune</h1>
+                    <div class="status-indicator">
+                        <div class="status-dot active"></div>
+                        <span class="status-text">AI Connected</span>
+                    </div>
+                </div>
+                
+                <nav class="main-navigation">
+                    <button class="nav-tab active" data-tab="optimize">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        Optimize
+                    </button>
+                    <button class="nav-tab" data-tab="library">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        Library
+                    </button>
+                    <button class="nav-tab" data-tab="analytics">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                        </svg>
+                        Analytics
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Optimize Tab Content -->
+            <div id="optimize-tab" class="tab-content active">
+                <div class="optimize-layout">
+                    <!-- Input Section -->
+                    <section class="input-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Prompt Input</h2>
+                            <p class="section-description">Describe your prompt or paste existing text for AI optimization</p>
+                        </div>
+                        
+                        <div class="input-container">
+                            <div class="textarea-wrapper">
+                                <textarea 
+                                    id="promptInput" 
+                                    class="prompt-textarea" 
+                                    placeholder="Enter your prompt description or existing prompt text..."
+                                    rows="6"
+                                ></textarea>
+                                <div class="textarea-footer">
+                                    <span class="character-count">0 characters</span>
+                                    <button class="clear-button" id="clearInput">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                        Clear
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="optimizeBtn" class="primary-button">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+                                    </svg>
+                                    Optimize Prompt
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Results Section -->
+                    <section class="results-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Optimized Result</h2>
+                            <div class="result-actions">
+                                <button id="copyResult" class="secondary-button" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                    Copy
+                                </button>
+                                <button id="saveToLibrary" class="secondary-button" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                                    </svg>
+                                    Save to Library
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-container">
+                            <div id="loadingState" class="loading-state hidden">
+                                <div class="loading-animation">
+                                    <div class="loading-dots">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                    <p class="loading-text">Analyzing and optimizing your prompt...</p>
+                                </div>
+                            </div>
+                            
+                            <div id="emptyState" class="empty-state">
+                                <div class="empty-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                        <path d="M2 17l10 5 10-5"/>
+                                        <path d="M2 12l10 5 10-5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="empty-title">Ready to optimize</h3>
+                                <p class="empty-description">Enter a prompt above and click "Optimize Prompt" to see AI-enhanced results</p>
+                            </div>
+                            
+                            <div id="resultContent" class="result-content hidden">
+                                <div class="result-text"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Library Tab Content -->
+            <div id="library-tab" class="tab-content">
+                <div class="library-layout">
+                    <div class="library-header">
+                        <div class="header-left">
+                            <h2 class="section-title">Prompt Library</h2>
+                            <p class="section-description">Manage and organize your optimized prompts</p>
+                        </div>
+                        <div class="header-actions">
+                            <div class="search-container">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                                <input type="text" id="searchPrompts" placeholder="Search prompts..." class="search-input">
+                            </div>
+                            <select id="categoryFilter" class="category-filter">
+                                <option value="">All Categories</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Development">Development</option>
+                                <option value="Analytics">Analytics</option>
+                                <option value="Content">Content</option>
+                                <option value="Business">Business</option>
+                            </select>
+                            <button id="addPromptBtn" class="primary-button">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Add Prompt
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="prompts-grid" id="promptsGrid">
+                        <!-- Prompt cards will be dynamically inserted here -->
+                    </div>
+                    
+                    <div id="libraryEmptyState" class="empty-state">
+                        <div class="empty-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="empty-title">No prompts found</h3>
+                        <p class="empty-description">Start building your library by adding or optimizing prompts</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab Content -->
+            <div id="analytics-tab" class="tab-content">
+                <div class="analytics-layout">
+                    <div class="section-header">
+                        <h2 class="section-title">Analytics Dashboard</h2>
+                        <p class="section-description">Track your prompt optimization usage and performance</p>
+                    </div>
+                    
+                    <div class="analytics-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="totalOptimizations">0</h3>
+                                <p class="stat-label">Total Optimizations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="savedPrompts">0</h3>
+                                <p class="stat-label">Saved Prompts</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                                    <path d="M3 3v18h18"/>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="avgLength">0</h3>
+                                <p class="stat-label">Avg. Prompt Length</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit Prompt -->
+    <div id="promptModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Add New Prompt</h3>
+                <button class="modal-close" id="closeModal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form class="modal-form" id="promptForm">
+                <div class="form-group">
+                    <label for="promptTitle" class="form-label">Title</label>
+                    <input type="text" id="promptTitle" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="promptCategory" class="form-label">Category</label>
+                    <select id="promptCategory" class="form-select" required>
+                        <option value="">Select category</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Development">Development</option>
+                        <option value="Analytics">Analytics</option>
+                        <option value="Content">Content</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="promptTags" class="form-label">Tags</label>
+                    <input type="text" id="promptTags" class="form-input" placeholder="Separate tags with commas">
+                </div>
+                
+                <div class="form-group">
+                    <label for="promptText" class="form-label">Prompt Text</label>
+                    <textarea id="promptText" class="form-textarea" rows="6" required></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="secondary-button" id="cancelModal">Cancel</button>
+                    <button type="submit" class="primary-button" id="savePrompt">Save Prompt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="modern-dark-app.js"></script>
+</body>
+</html>
