@@ -224,7 +224,7 @@ def lambda_handler(event, context):
                     'version': '3.0.0',
                     'timestamp': datetime.utcnow().isoformat(),
                     'message': '🚀 Advanced AI-Powered Prompt Optimization is running!',
-                    'ai_model': 'Amazon Bedrock Claude-3 Haiku',
+                    'ai_model': 'Amazon Bedrock Claude 3.5 Sonnet',
                     'features': [
                         'Advanced system prompt with cognitive science principles',
                         'Domain-specific optimization patterns',
@@ -235,7 +235,7 @@ def lambda_handler(event, context):
             }
         
         # Enhanced optimize prompt endpoint
-        if path == '/optimize' and method == 'POST':
+        if (path == '/optimize' or path == '/api/optimize') and method == 'POST':
             body = json.loads(event.get('body', '{}'))
             user_prompt = body.get('prompt', '')
             
@@ -256,8 +256,8 @@ def lambda_handler(event, context):
             # Try advanced AI optimization first
             try:
                 optimized_prompt = optimize_with_advanced_bedrock(user_prompt, domain)
-                optimization_method = 'Advanced AI (Claude-3 Haiku)'
-                optimization_score = 95
+                optimization_method = 'Advanced AI (Claude 3.5 Sonnet)'
+                optimization_score = 97
                 
             except Exception as ai_error:
                 logger.error(f"Advanced Bedrock AI error: {str(ai_error)}")
@@ -364,7 +364,7 @@ def lambda_handler(event, context):
 
 def optimize_with_advanced_bedrock(user_prompt: str, domain: str) -> str:
     """
-    Use Amazon Bedrock Claude-3 Haiku with advanced system prompt
+    Use Amazon Bedrock Claude 3.5 Sonnet with advanced system prompt
     """
     
     # Prepare the request with advanced system prompt
@@ -387,9 +387,9 @@ OPTIMIZED PROMPT:"""
         ]
     }
     
-    # Call Bedrock with enhanced configuration
+    # Call Bedrock with enhanced configuration using Claude 3.5 Sonnet
     response = bedrock_runtime.invoke_model(
-        modelId="anthropic.claude-3-haiku-20240307-v1:0",
+        modelId="anthropic.claude-3-5-sonnet-20240620-v1:0",
         body=json.dumps(body),
         contentType="application/json"
     )

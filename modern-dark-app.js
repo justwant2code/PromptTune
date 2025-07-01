@@ -154,7 +154,7 @@ class PromptTuneApp {
         this.disableOptimizeButton();
 
         try {
-            const response = await fetch('https://ue7kx4xdqj.execute-api.us-east-1.amazonaws.com/prod/optimize-prompt', {
+            const response = await fetch('/api/optimize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
